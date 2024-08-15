@@ -25,7 +25,7 @@ export const Header = () => {
 		return (
 			<Flex minWidth='max-content' alignItems='center' gap='2' m='2' >
 				<Box>
-					<Heading size='lg'> Test App </Heading>
+					<Heading size='lg'> 社内人材検索・質問アプリ </Heading>
 				</Box>
 				<Spacer />
 				<DrawerExample />
@@ -36,7 +36,7 @@ export const Header = () => {
 		<Flex minWidth='max-content' alignItems='center' gap='2' mt='2' mb='2' >
 			<Spacer />
 			<Box>
-				<Heading size='lg'> Test App </Heading>
+				<Heading size='lg'> 社内人材検索・質問アプリ </Heading>
 			</Box>
 			<Spacer />
 			<ButtonGroup gap='2'>
@@ -69,7 +69,7 @@ function DrawerExample() {
 					<DrawerCloseButton color='white' boxSize={8} />
 					<DrawerHeader color='white' >
 						<Heading size='lg'>
-							Test App
+						社内人材検索・質問アプリ	
 						</Heading>
 					</DrawerHeader>
 					<DrawerBody>

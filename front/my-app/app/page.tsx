@@ -45,6 +45,61 @@ const Home= ()=> {
 				<Th>外出中</Th>
 				<Th>5年目</Th>
 			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>田中</Th>
+				<Th>休憩中</Th>
+				<Th>1年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
+			<Tr>
+				<Th>山田</Th>
+				<Th>外出中</Th>
+				<Th>5年目</Th>
+			</Tr>
 		</Tbody>
 		</Table>
 		</Center>
