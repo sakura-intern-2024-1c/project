@@ -12,11 +12,19 @@ import {Spacer,Center} from '@chakra-ui/react'
 import {User, usersSample} from '@/api/ApiSample'
 import { useState, useEffect } from 'react'
 import {Fetchs} from '@/api/ApiSample'
+import {Api} from '@/api/Api'
+
+export const getUsers = async ()=>{
+	try{
+		const users=await Api.getUsers()
+		return users
+	}catch{
+		return null
+	}
+}
 const Home= ()=> {
-	useEffect(
-		()=>{
-		}
-	)
+	// console.log(users)
+	getUsers()
 	return (
 		<Center>
 		<Table w="80%" >
