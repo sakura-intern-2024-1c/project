@@ -24,8 +24,8 @@ export const Header = () => {
 	if (isMobile) {
 		return (
 			<Flex minWidth='max-content' alignItems='center' gap='2' m='2' >
-				<Box>
-					<Heading size='lg'> 社内人材検索・質問アプリ </Heading>
+				<Box >
+					<Heading size='lg' > 社内人材検索・質問アプリ </Heading>
 				</Box>
 				<Spacer />
 				<DrawerExample />
