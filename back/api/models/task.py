@@ -19,3 +19,13 @@ class Done(Base):
     id = Column(Integer, ForeignKey("tasks.id"), primary_key=True)
 
     task = relationship("Task", back_populates="done")
+
+
+class User(Base):
+    __tablename__ = "tasks"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(64))
+    status = Column(String(16))
+    experience = Column(String(4096))
+    #done = relationship("Done", back_populates="task", cascade="delete")
