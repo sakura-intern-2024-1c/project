@@ -1,10 +1,9 @@
 import { Header } from "@/components/Header"
 import {Box} from "@chakra-ui/react"
-export default function Home() {
+const QuestionAnswer= ()=> {
 	return (
 		<>
-		<Box w="80%" h="50%" color='blue'>
-		</Box>
 		</>
 	);
 }
+export default QuestionAnswer
