@@ -6,10 +6,11 @@ import { VStack,Center,Spacer, Divider } from '@chakra-ui/react'
 
 const QuestionPage= ()=> {
 	return(
-		<VStack >
+		<Center>
+		<VStack w={["80%","lg"]}>
 			<Box h={10}></Box>
 			<Center>
-			<Card w='lg'>
+			<Card w={["80%","lg"]}>
 				<CardHeader>
 					<Heading size='md'> 質問</Heading>
 					<Divider mt={2} mb={3}/>
@@ -32,7 +33,7 @@ const QuestionPage= ()=> {
 			</Center>
 			<Box h={10}></Box>
 			<Center>
-			<Card w='lg'>
+			<Card w={["80%","lg"]}>
 				<CardHeader>
 				<Heading size='md'> 回答</Heading>
 					<Divider mt={2} mb={3}/>
@@ -54,6 +55,7 @@ const QuestionPage= ()=> {
 			</Card>
 			</Center>
 		</VStack>
+		</Center>
 	)
 }
 export default QuestionPage
