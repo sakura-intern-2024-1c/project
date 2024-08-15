@@ -3,9 +3,6 @@ import {Spacer, Center} from '@chakra-ui/react'
 import { useRouter } from 'next/router';
 export const Footer = () => {
 	const router = useRouter()
-	const handleClick = () => {
-  alert(123);
-}
 	return (
 		<>
 		<Center m={12}>
