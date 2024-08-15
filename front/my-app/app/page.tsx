@@ -5,10 +5,8 @@ import {
   Tfoot,
   Tr,
   Th,
-  Td,
-  TableCaption,
-  TableContainer,
 } from '@chakra-ui/react'
+import {Spacer,Center} from '@chakra-ui/react'
 type User = {
 	id: number;
 	name: string;
@@ -48,6 +46,7 @@ const Home= ()=> {
 			</Tr>
 		</Tbody>
 		</Table>
+		</Center>
 	);
 }
 export default Home
