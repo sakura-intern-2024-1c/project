@@ -1,14 +1,16 @@
+# router/task.py
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 import api.cruds.task as task_crud
 from api.db import get_db
-from sqlalchemy import asc
+from sqlalchemy import asc, or_
 from api.models.task import Question as QuestionModel, Answer as AnswerModel
 from api.schemas.question import Question
 from api.schemas.answer import Answer
 from api.schemas.user import User
+from api.schemas.search import SearchRequest
 from api.models.task import User as UserModel
 import api.schemas.task as task_schema
 
@@ -70,3 +72,18 @@ async def get_answers_by_question_id(question_id: int, db: AsyncSession = Depend
     if not answers:
         raise HTTPException(status_code=404, detail="Answers are not found")
     return answers
+
+@router.post("/search_questions", response_model=List[Question])
+async def search_questions(
+    search_request: SearchRequest,
+    db: AsyncSession = Depends(get_db)
+):
+    words = search_request.word.split()
+    filters = [QuestionModel.question_text.like(f"%{word}%") for word in words]
+    result = await db.execute(
+        select(QuestionModel).where(or_(*filters))
+    )
+    questions = result.scalars().all()
+    if not questions:
+        raise HTTPException(status_code=404, detail="No questions found with the given keyword")
+    return questions

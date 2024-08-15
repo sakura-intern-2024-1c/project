@@ -12,14 +12,12 @@ class Task(Base):
 
     done = relationship("Done", back_populates="task", cascade="delete")
 
-
 class Done(Base):
     __tablename__ = "dones"
 
     id = Column(Integer, ForeignKey("tasks.id"), primary_key=True)
 
     task = relationship("Task", back_populates="done")
-
 
 class User(Base):
     __tablename__ = "users"
@@ -33,7 +31,7 @@ class Question(Base):
         __tablename__ = "questions"
 
         id = Column(Integer, primary_key=True)
-        user_id = Column(Integer, ForeignKey("user.id"))
+        user_id = Column(Integer, ForeignKey("users.id"))
         question_text = Column(String(8192))
 
         answers = relationship("Answer", back_populates="question")
