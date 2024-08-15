@@ -1,3 +1,4 @@
+"use client"
 import { Header } from "@/components/Header"
 import { StackDivider, Stack, HStack, VStack } from '@chakra-ui/react'
 import {Box} from "@chakra-ui/react"
@@ -10,6 +11,7 @@ import {
   Tr,
   Th,
 } from '@chakra-ui/react'
+import { useRouter } from 'next/navigation'
 
 type Question = {
 	id: number;
@@ -44,18 +46,19 @@ type Props = {
 }
 
 const QuestionList = ({ questions }: Props) => {
-  return (
-	  <Tbody>
-		  {questions.map((question) => (
-			  <>
-				  <Tr _hover={{ background:"lightgray" }} >
-					  <Th>
-						  {question.q}
-					  </Th>
-				  </Tr>
-			  </>
-		  ))}
-	  </Tbody>
-  )
+	const router = useRouter()
+	return (
+		<Tbody>
+			{questions.map((question) => (
+				<>
+					<Tr _hover={{ background:"lightgray" }} onClick={()=>{router.push("Questions/"+String(question.id))}}>
+						<Th>
+							  {question.q}
+						</Th>
+					</Tr>
+				</>
+			))}
+		</Tbody>
+	)
 }
 export default QuestionsPage
