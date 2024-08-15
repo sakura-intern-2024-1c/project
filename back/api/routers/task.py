@@ -4,6 +4,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 import api.cruds.task as task_crud
 from api.db import get_db
+from sqlalchemy import asc
+from api.models.task import Question as QuestionModel, Answer as AnswerModel
+from api.schemas.question import Question
+from api.schemas.answer import Answer
 from api.schemas.user import User
 from api.models.task import User as UserModel
 import api.schemas.task as task_schema
@@ -52,3 +56,17 @@ async def get_users(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(UserModel))
     users = result.scalars().all()
     return users
+
+@router.get("/questions", response_model=List[Question])
+async def get_questions(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(QuestionModel).order_by(asc(QuestionModel.id)))
+    questions = result.scalars().all()
+    return questions
+
+@router.get("/question/{question}/answers", response_model=List[Answer])
+async def get_answers_by_question_id(question_id: int, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(AnswerModel).where(AnswerModel.question_id == question_id).order_by(asc(AnswerModel.id)))
+    answers = result.scalars().all()
+    if not answers:
+        raise HTTPException(status_code=404, detail="Answers are not found")
+    return answers
