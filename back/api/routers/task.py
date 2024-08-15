@@ -1,9 +1,11 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from sqlalchemy.future import select
 import api.cruds.task as task_crud
 from api.db import get_db
+from api.schemas.user import User
+from api.models.task import User as UserModel
 import api.schemas.task as task_schema
 
 router = APIRouter()
@@ -44,3 +46,9 @@ async def delete_task(task_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Task not found")
 
     return await task_crud.delete_task(db, original=task)
+
+@router.get("/users", response_model=List[User])
+async def get_users(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(UserModel))
+    users = result.scalars().all()
+    return users
