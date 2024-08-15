@@ -16,7 +16,7 @@ const QuestionPage= ()=> {
 					<Divider mt={2} mb={3}/>
 					<Flex>
 						<Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-							<Avatar name='田中太郎' src='https://bit.ly/broken-link'/>
+							<Avatar name='田中　太郎' src='https://bit.ly/broken-link'/>
 							<Box>
 								<Heading size='sm'>田中 太郎</Heading>
 								<Text>営業1年目</Text>
