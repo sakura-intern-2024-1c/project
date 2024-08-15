@@ -1,7 +1,8 @@
-import { Header } from "@/components/Header"
-export default function Home() {
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+const Answers= ()=> {
 	return (
 		<>
 		</>
 	);
 }
+export default Answers
