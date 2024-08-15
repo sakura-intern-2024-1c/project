@@ -20,6 +20,7 @@ const users: User[] = [
 ]
 const Home= ()=> {
 	return (
+		<Center>
 		<Table w="80%" >
 		<Thead>
 			<Tr>
