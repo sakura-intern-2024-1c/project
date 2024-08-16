@@ -8,7 +8,7 @@ export const Footer = () => {
 		<>
 		<Center m={12}>
 		<Spacer />
-		<Button onClick={()=>{router.push("/QuestionPost/-1")}}>AI</Button>
+		<Button variant='ghost' onClick={()=>{router.push("/QuestionPost/-1")}}>AI</Button>
 		<Spacer />
 		<Button variant='ghost' onClick={()=>{router.push("/Questions")}}>過去のQAコーナー</Button>
 		<Spacer />

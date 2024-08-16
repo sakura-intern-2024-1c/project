@@ -6,9 +6,9 @@ import {
   Tfoot,
   Tr,
   Th,
-  background,
+  Box,
 } from '@chakra-ui/react'
-import {Spacer,Center} from '@chakra-ui/react'
+import {Spacer,Center, Input, VStack} from '@chakra-ui/react'
 import {User, usersSample} from '@/api/ApiSample'
 import { useState, useEffect } from 'react'
 import {Fetchs} from '@/api/ApiSample'
@@ -17,18 +17,25 @@ import { useRouter } from 'next/navigation'
 
 
 const Home= ()=> {
+	const [word, setWord] = useState("");
+	const handleChange = (event: any) => setWord(event.target.value)
+	
 	return (
 		<Center>
-		<Table w="80%" >
-		<Thead>
-			<Tr>
-				<Th>名前</Th>
-				<Th>ステータス</Th>
-				<Th>経験</Th>
-			</Tr>
-		</Thead>
-		<UserList users={ usersSample } />
-		</Table>
+		<VStack w="100%">
+			<Box h={10}></Box>
+			<Input placeholder='検索ボックス' size='lg' w='80%' onChange={handleChange}/>
+			<Table w="80%" >
+			<Thead>
+				<Tr>
+					<Th>名前</Th>
+					<Th>ステータス</Th>
+					<Th>経験</Th>
+				</Tr>
+			</Thead>
+			<UserList users={ searchUser(word) } />
+			</Table>
+		</VStack>
 		</Center>
 	);
 }
@@ -60,6 +67,18 @@ const UserList = ({ users }: Props) => {
   )
 }
 
+
+const searchUser=(word:string)=>{
+	console.log("aaaaa")
+		var users=[]
+		for (let u of usersSample){
+			if(u.name.includes(word) || u.experience.includes(word) || u.status.includes(word)){
+				users.push(u)
+			}
+		}
+		console.log(users)
+		return users
+}
 
 
 export default Home
