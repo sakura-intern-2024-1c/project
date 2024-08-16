@@ -9,6 +9,7 @@ async def create_user(db: AsyncSession, user_create: user_schema.UserCreate) -> 
     db.add(user)
     await db.commit()
     await db.refresh(user)
+    
     return user
 
 

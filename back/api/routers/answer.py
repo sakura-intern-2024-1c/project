@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from api.db import get_db
-from sqlalchemy import asc, or_
-from api.models.task import Answer as AnswerModel
+from sqlalchemy import asc
+from api.models.user import Answer as AnswerModel
 from api.schemas.answer import Answer
 import api.cruds.answer as answer_crud
 
