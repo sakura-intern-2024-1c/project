@@ -1,9 +1,9 @@
 import { Header } from "@/components/Header"
-import {Box} from "@chakra-ui/react"
-const QuestionAnswer= ()=> {
+const QuestionAnswerPage= ()=> {
 	return (
 		<>
 		</>
 	);
 }
-export default QuestionAnswer
+export default QuestionAnswerPage
+

@@ -1,8 +1,8 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-const Answers= ()=> {
+const AnswersPage= ()=> {
 	return (
 		<>
 		</>
 	);
 }
-export default Answers
+export default AnswersPage

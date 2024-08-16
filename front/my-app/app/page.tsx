@@ -1,3 +1,4 @@
+"use client"
 import {
   Table,
   Thead,
@@ -5,20 +6,25 @@ import {
   Tfoot,
   Tr,
   Th,
+  background,
 } from '@chakra-ui/react'
 import {Spacer,Center} from '@chakra-ui/react'
-type User = {
-	id: number;
-	name: string;
-	status: number;
-	experience: string;
-};
-const users: User[] = [
-	{ id: 1, name: "tanaka", status: 1, experience: "new" },
-	{ id: 1, name: "yamada", status: 2, experience: "new" },
-	{ id: 1, name: "sato", status: 3, experience: "new" },
-]
+import {User, usersSample} from '@/api/ApiSample'
+import { useState, useEffect } from 'react'
+import {Fetchs} from '@/api/ApiSample'
+import {Api} from '@/api/Api'
+
+export const getUsers = async ()=>{
+	try{
+		const users=await Api.getUsers()
+		return users
+	}catch{
+		return null
+	}
+}
 const Home= ()=> {
+	// console.log(users)
+	getUsers()
 	return (
 		<Center>
 		<Table w="80%" >
@@ -29,25 +35,38 @@ const Home= ()=> {
 				<Th>経験</Th>
 			</Tr>
 		</Thead>
-		<Tbody>
-			<Tr>
-				<Th>田中</Th>
-				<Th>休憩中</Th>
-				<Th>1年目</Th>
-			</Tr>
-			<Tr>
-				<Th>山田</Th>
-				<Th>外出中</Th>
-				<Th>5年目</Th>
-			</Tr>
-			<Tr>
-				<Th>山田</Th>
-				<Th>外出中</Th>
-				<Th>5年目</Th>
-			</Tr>
-		</Tbody>
+		<UserList users={ usersSample } />
 		</Table>
 		</Center>
 	);
 }
+
+type Props = {
+  users: User[]
+}
+
+const UserList = ({ users }: Props) => {
+  return (
+	  <Tbody>
+		  {users.map((user) => (
+			  <>
+				  <Tr _hover={{ background:"lightgray" }} >
+					  <Th>
+						  { user.name }
+					  </Th>
+					  <Th>
+						  { user.status }
+					  </Th>
+					  <Th>
+						  { user.experience }
+					  </Th>
+				  </Tr>
+			  </>
+		  ))}
+	  </Tbody>
+  )
+}
+
+
+
 export default Home
