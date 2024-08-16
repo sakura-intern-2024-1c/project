@@ -15,7 +15,7 @@ router = APIRouter()
 @router.post("/create_question", response_model=Question)
 async def create_question(question_body: Question, db: AsyncSession = Depends(get_db)):
     return await question_crud.create_question(db, question_create=question_body)
-
+"""
 @router.delete("/delete_question/{question_id}", response_model=None)
 async def delete_question(question_id: int, db: AsyncSession = Depends(get_db)):
     question = await question_crud.get_question(db, question_id=question_id)
@@ -23,7 +23,7 @@ async def delete_question(question_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Question not found")
     await question_crud.delete_question(db, original=question)
     return {"detail": "Question deleted"}
-
+"""
 @router.post("/search_questions", response_model=List[Question])
 async def search_questions(
     search_request: SearchRequest,
