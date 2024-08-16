@@ -4,10 +4,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 import api.cruds.task as task_crud
 from api.db import get_db
-from sqlalchemy import asc, or_
-from api.models.task import Question as QuestionModel, Answer as AnswerModel
-from api.schemas.question import Question
-from api.schemas.answer import Answer
 
 import api.schemas.task as task_schema
 
