@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+#model/user.py
+from sqlalchemy import Column, Integer, String
 from api.db import Base
 
 
@@ -10,24 +10,25 @@ class User(Base):
     name = Column(String(64))
     status = Column(String(16))
     experience = Column(String(4096))
-    question = relationship("Question", back_populates="users")
+    #question = relationship("Question", back_populates="Question")
 
 
 class Question(Base):
     __tablename__ = "questions"
 
     id = Column(Integer, primary_key=True)
-    user = relationship("User", back_populates="questions")
-    user_id = Column(Integer, ForeignKey("users.id"))
+    name = Column(String(64))
+    #user = relationship("User", back_populates="Question")
+    #user_id = Column(Integer, ForeignKey("user.id"))
     question_text = Column(String(8192))
-
-    answers = relationship("Answer", back_populates="questions")
+    #answers = relationship("Answer", back_populates="Question")
 
 
 class Answer(Base):
     __tablename__ = "answers"
 
     id = Column(Integer, primary_key=True)
-    question_id = Column(Integer, ForeignKey("questions.id"))  # Questionテーブルのidを参照する外部キー
-    question = relationship("Question", back_populates="answers", uselist=False)
+    name = Column(String(64))
+    #question_id = Column(Integer, ForeignKey("questions.id")) 
+    #question = relationship("Question", back_populates="Answer", uselist=False)
     answer_text = Column(String(8192))

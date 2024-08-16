@@ -1,6 +1,6 @@
 #cruds/answer.py
 from sqlalchemy.ext.asyncio import AsyncSession
-import api.models.task as answer_model
+import api.models.user as answer_model
 import api.schemas.answer as answer_schema
 
 async def create_answer(db: AsyncSession, answer_create: answer_schema.AnswerCreate) -> answer_model.Answer:
