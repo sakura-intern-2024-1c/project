@@ -1,10 +1,28 @@
+"use client"
 import { Box } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 import { Heading, Flex, Text, Avatar } from '@chakra-ui/react'
 import { VStack,Center,Spacer, Divider } from '@chakra-ui/react'
+import { useSearchParams, usePathname, useParams } from "next/navigation";
+import {useEffect} from 'react'
+import {Fetchs, questionsSample, answerSample, usersSample} from '@/api/ApiSample'
 
 
 const QuestionPage= ()=> {
+	const params = useParams()
+	const id = Number(params.id)
+	const question = getQuestion(id)
+	const answer = getAnswer(id)
+	if ( question==null ) return
+	if ( answer==null ) return
+	const question_user = getUser(question.user_id)
+	const answer_user = getUser(answer.user_id)
+	if ( question_user==null ) return
+	if ( answer_user==null ) return
+	console.log(question)
+	console.log(answer)
+	console.log(question_user)
+	console.log(answer_user)
 	return(
 		<Center>
 		<VStack w={["80%","lg"]}>
@@ -16,17 +34,17 @@ const QuestionPage= ()=> {
 					<Divider mt={2} mb={3}/>
 					<Flex>
 						<Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-							<Avatar name='田中　太郎' src='https://bit.ly/broken-link'/>
+							<Avatar name={question_user.name} src='https://bit.ly/broken-link'/>
 							<Box>
-								<Heading size='sm'>田中 太郎</Heading>
-								<Text>営業1年目</Text>
+								<Heading size='sm'>{question_user.name}</Heading>
+								<Text>{question_user.experience}</Text>
 							</Box>
 					</Flex>
 				</Flex>
 			</CardHeader>
 			<CardBody>
 				<Text>
-					幸せとは何か、それをどのように定義できますか？
+					{question.q}
 				</Text>
 			</CardBody>
 			</Card>
@@ -39,17 +57,17 @@ const QuestionPage= ()=> {
 					<Divider mt={2} mb={3}/>
 					<Flex>
 						<Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-							<Avatar name='中村 翔太' src='https://bit.ly/broken-link'/>
+							<Avatar name={answer_user.name} src='https://bit.ly/broken-link'/>
 							<Box>
-								<Heading size='sm'>中村 翔太</Heading>
-								<Text>営業4年目</Text>
+								<Heading size='sm'>{answer_user.name}</Heading>
+								<Text>{answer_user.experience}</Text>
 							</Box>
 					</Flex>
 				</Flex>
 				</CardHeader>
 				<CardBody>
 					<Text>
-幸せとは、非常に個人的で主観的な概念であり、一般的に「満足感」や「充足感」を感じる状態を指します。人によって異なる価値観や経験によって感じられるものであるため、普遍的な定義は難しいですが、以下のような要素が幸せの定義に関わることが多いです。
+					{answer.a}
 					</Text>
 				</CardBody>
 			</Card>
@@ -59,3 +77,32 @@ const QuestionPage= ()=> {
 	)
 }
 export default QuestionPage
+
+const getQuestion=(id:number)=>{
+		var question=null
+		for (let q of questionsSample){
+			if (q.id == id){
+				question=q
+			}
+		}
+		return question
+}
+
+const getAnswer=(question_id:number)=>{
+		var answer=null
+		for (let a of answerSample){
+			if(a.question_id == question_id){
+				answer=a
+			}
+		}
+		return answer
+}
+const getUser=(user_id:number)=>{
+		var user=null
+		for (let u of usersSample){
+			if(u.id == user_id){
+				user=u
+			}
+		}
+		return user
+}

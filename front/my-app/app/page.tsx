@@ -13,18 +13,19 @@ import {User, usersSample} from '@/api/ApiSample'
 import { useState, useEffect } from 'react'
 import {Fetchs} from '@/api/ApiSample'
 import {Api} from '@/api/Api'
+import { useRouter } from 'next/navigation'
 
-export const getUsers = async ()=>{
-	try{
-		const users=await Api.getUsers()
-		return users
-	}catch{
-		return null
-	}
-}
+
+// export const getUsers = async () => {
+// 	try{
+// 		const users=await Api.getUsers()
+// 		return users
+// 	}catch{
+// 		return null
+// 	}
+// }
 const Home= ()=> {
 	// console.log(users)
-	getUsers()
 	return (
 		<Center>
 		<Table w="80%" >
@@ -46,11 +47,12 @@ type Props = {
 }
 
 const UserList = ({ users }: Props) => {
-  return (
+	const router = useRouter()
+	  return (
 	  <Tbody>
 		  {users.map((user) => (
 			  <>
-				  <Tr _hover={{ background:"lightgray" }} >
+					<Tr _hover={{ background:"lightgray" }} onClick={()=>{router.push("/QuestionPost")}}>
 					  <Th>
 						  { user.name }
 					  </Th>
