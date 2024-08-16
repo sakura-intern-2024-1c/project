@@ -12,7 +12,7 @@ from sqlalchemy.future import select
 
 router = APIRouter()
 
-@router.post("/question/{question_id}", response_model=Question)
+@router.post("/create_question", response_model=Question)
 async def create_question(question_body: Question, db: AsyncSession = Depends(get_db)):
     return await task_crud.create_question(db, question_create=question_body)
 
