@@ -6,8 +6,16 @@ import { Heading, Flex, Text, Avatar } from '@chakra-ui/react'
 import { VStack,Center,Spacer, Divider } from '@chakra-ui/react'
 import { Textarea, Button } from '@chakra-ui/react'
 import { useSearchParams, usePathname, useParams } from "next/navigation";
+// import { Configuration, OpenAIApi } from "openai"
+import { OpenAI } from "openai"
+import Configuration from "openai"
 import {Fetchs, questionsSample, answerSample, usersSample} from '@/api/ApiSample'
+import { useState, useEffect } from 'react'
+import { useToast } from '@chakra-ui/react'
 const QuestionPostPage= ()=> {
+	const toast = useToast()
+	const [word, setWord] = useState("");
+	const handleChange = (event: any) => setWord(event.target.value)
 	const params = useParams()
 	const id = Number(params.id)
 	if (id==null) return
@@ -15,6 +23,24 @@ const QuestionPostPage= ()=> {
 	if (answer_user==null) return
 	const question_user = getUser(1)
 	if (question_user==null) return
+	const postQuestion = async (word:string) => {
+		try {
+			if (id!=-1) return 
+			console.log(word)
+			const res=await AIHandle(word)
+			toast({
+				title: 'AIの回答',
+				description: res,
+				status: 'success',
+				duration: 9000,
+				isClosable: true,
+			})
+		} catch (error){
+			console.log(error)
+			return 
+		}
+	};
+	
 	return (
 		<Center>
 		<VStack w={["80%","lg"]}>
@@ -53,11 +79,11 @@ const QuestionPostPage= ()=> {
 				</Flex>
 				</CardHeader>
 				<CardBody>
-				<Textarea />
+				<Textarea onChange={handleChange}/>
 				</CardBody>
 				<CardFooter>
 				<Spacer />
-				<Button>
+				<Button onClick={()=>{postQuestion(word)}}>
 				送信
 				</Button>
 				</CardFooter>
@@ -77,4 +103,19 @@ const getUser=(user_id:number)=>{
 			}
 		}
 		return user
+}
+
+
+const AIHandle=async(word:string) => {
+  const openai = new OpenAI({
+	  apiKey: "openAPI key",
+	  dangerouslyAllowBrowser: true
+  })
+  const completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      { role: "system", content: word },
+    ],
+  })
+  return completion.choices[0].message.content
 }

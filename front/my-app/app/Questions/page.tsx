@@ -26,8 +26,7 @@ const QuestionsPage= ()=> {
 			<Input placeholder='検索ボックス' size='lg' w='80%' onChange={handleChange}/>
 		<Table w="80%" >
 		<Thead>
-			<Tr>
-				<Th>質問</Th>
+			<Tr> <Th>質問</Th>
 			</Tr>
 		</Thead>
 		<QuestionList questions={searchQuestion(word)}/>
@@ -57,7 +56,6 @@ const QuestionList = ({ questions }: Props) => {
 	)
 }
 const searchQuestion=(word:string)=>{
-	console.log("aaaaa")
 		var questions:Question[]=[]
 		for (let q of questionsSample){
 			if(q.q.includes(word) ){
