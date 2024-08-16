@@ -19,14 +19,17 @@ import {
 	DrawerCloseButton,
 } from '@chakra-ui/react'
 
+import { useRouter } from 'next/navigation'
+
 export const Header = () => {
 	const isMobile = useBreakpointValue({ base: true, md: false })
+	const router = useRouter()
 	if (isMobile) {
 		return (
 			<Flex minWidth='max-content' alignItems='center' gap='2' m='2' >
-				<Box>
-					<Heading size='lg'> Test App </Heading>
-				</Box>
+				<Button onClick={()=>{router.push("/")}} bgColor="white" _hover={{bgColor:"white",color:"gray"}}>
+				<Heading size='lg'> 社内人材検索・質問アプリ </Heading>
+				</Button>
 				<Spacer />
 				<DrawerExample />
 			</Flex>
@@ -35,9 +38,9 @@ export const Header = () => {
 	return (
 		<Flex minWidth='max-content' alignItems='center' gap='2' mt='2' mb='2' >
 			<Spacer />
-			<Box>
-				<Heading size='lg'> Test App </Heading>
-			</Box>
+				<Button onClick={()=>{router.push("/")}} bgColor="white" _hover={{bgColor:"white",color:"gray"}}>
+				<Heading size='lg'> 社内人材検索・質問アプリ </Heading>
+				</Button>
 			<Spacer />
 			<ButtonGroup gap='2'>
 				<Button bgColor='white' size='lg'>Sign Up</Button>
@@ -69,7 +72,7 @@ function DrawerExample() {
 					<DrawerCloseButton color='white' boxSize={8} />
 					<DrawerHeader color='white' >
 						<Heading size='lg'>
-							Test App
+						社内人材検索・質問アプリ	
 						</Heading>
 					</DrawerHeader>
 					<DrawerBody>
