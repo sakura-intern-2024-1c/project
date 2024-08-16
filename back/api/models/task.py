@@ -12,10 +12,66 @@ class Task(Base):
 
     done = relationship("Done", back_populates="task", cascade="delete")
 
-
 class Done(Base):
     __tablename__ = "dones"
 
     id = Column(Integer, ForeignKey("tasks.id"), primary_key=True)
 
     task = relationship("Task", back_populates="done")
+<<<<<<< HEAD
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(64))
+    status = Column(String(16))
+    experience = Column(String(4096))
+
+class Question(Base):
+        __tablename__ = "questions"
+
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey("users.id"))
+        question_text = Column(String(8192))
+
+        answers = relationship("Answer", back_populates="question")
+    
+        user = relationship("User", back_populates="questions")
+
+class Answer(Base):
+        __tablename__ = "answers"
+
+        id = Column(Integer, primary_key=True)
+        question_id = Column(Integer, ForeignKey("questions.id"))  # Questionテーブルのidを参照する外部キー
+        answer_text = Column(String(8192))
+||||||| 5b9a859
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(64))
+    status = Column(String(16))
+    experience = Column(String(4096))
+
+class Question(Base):
+        __tablename__ = "questions"
+
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey("user.id"))
+        question_text = Column(String(8192))
+
+        answers = relationship("Answer", back_populates="question")
+    
+        user = relationship("User", back_populates="questions")
+
+class Answer(Base):
+        __tablename__ = "answers"
+
+        id = Column(Integer, primary_key=True)
+        question_id = Column(Integer, ForeignKey("questions.id"))  # Questionテーブルのidを参照する外部キー
+        answer_text = Column(String(8192))
+=======
+>>>>>>> main
