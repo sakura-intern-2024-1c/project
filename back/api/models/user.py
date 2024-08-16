@@ -10,18 +10,18 @@ class User(Base):
     name = Column(String(64))
     status = Column(String(16))
     experience = Column(String(4096))
-    question = relationship("Question", back_populates="Question")
+    question = relationship("Question", back_populates="users")
 
 
 class Question(Base):
     __tablename__ = "questions"
 
     id = Column(Integer, primary_key=True)
-    user = relationship("User", back_populates="Question")
-    user_id = Column(Integer, ForeignKey("user.id"))
+    user = relationship("User", back_populates="questions")
+    user_id = Column(Integer, ForeignKey("users.id"))
     question_text = Column(String(8192))
 
-    answers = relationship("Answer", back_populates="Question")
+    answers = relationship("Answer", back_populates="questions")
 
 
 class Answer(Base):
@@ -29,5 +29,5 @@ class Answer(Base):
 
     id = Column(Integer, primary_key=True)
     question_id = Column(Integer, ForeignKey("questions.id"))  # Questionテーブルのidを参照する外部キー
-    question = relationship("Question", back_populates="Answer", uselist=False)
+    question = relationship("Question", back_populates="answers", uselist=False)
     answer_text = Column(String(8192))
