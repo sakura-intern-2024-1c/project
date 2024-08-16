@@ -13,7 +13,7 @@ export const Fetchs = {
 	},
 	getAnswer:async(question_id:number)=>{
 		var answer=null
-		for (let a of AnswerSample){
+		for (let a of answerSample){
 			if(a.question_id == question_id){
 				answer=a
 			}
@@ -64,6 +64,7 @@ export type User = {
 	experience: string;
 };
 export const usersSample: User[] = [
+	{ id:-1, name:"AI", status:"起動中", experience: "人工知能" },
 	{ id: 1, name: "田中 太郎", status: "休憩中", experience: "営業1年目" },
 	{ id: 2, name: "鈴木 一郎", status: "仕事中", experience: "エンジニア2年目" },
 	{ id: 3, name: "高橋 由美", status: "休憩中", experience: "総務5年目" },

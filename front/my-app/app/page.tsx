@@ -16,16 +16,7 @@ import {Api} from '@/api/Api'
 import { useRouter } from 'next/navigation'
 
 
-// export const getUsers = async () => {
-// 	try{
-// 		const users=await Api.getUsers()
-// 		return users
-// 	}catch{
-// 		return null
-// 	}
-// }
 const Home= ()=> {
-	// console.log(users)
 	return (
 		<Center>
 		<Table w="80%" >
@@ -52,7 +43,7 @@ const UserList = ({ users }: Props) => {
 	  <Tbody>
 		  {users.map((user) => (
 			  <>
-					<Tr _hover={{ background:"lightgray" }} onClick={()=>{router.push("/QuestionPost")}}>
+					<Tr _hover={{ background:"lightgray" }} onClick={()=>{router.push("/QuestionPost/"+String(user.id))}}>
 					  <Th>
 						  { user.name }
 					  </Th>
