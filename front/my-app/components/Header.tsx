@@ -44,7 +44,7 @@ export const Header = () => {
 			<Spacer />
 			<ButtonGroup gap='2'>
 				<Button bgColor='white' size='lg'>Sign Up</Button>
-				<Button bgColor='white' size='lg'>Log in</Button>
+				<Button bgColor='white' size='lg' onClick={ ()=>{router.push("/login")} }>Log in</Button>
 			</ButtonGroup>
 			<Spacer />
 		</Flex>
